@@ -1,3 +1,7 @@
+# John Giglio
+# HW 3 PyBank
+# Revised 6/17
+
 # import packages
 
 import csv
