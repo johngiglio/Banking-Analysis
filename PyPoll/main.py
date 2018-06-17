@@ -2,21 +2,20 @@
 
 import csv
 
-# read csv file
+
 # three columns: `Voter ID`, `County`, and `Candidate`
-# create empty lists to store data
+# create empty lists to store columns
 
 ID = []
 country = []
 candidate = []
 
-file = 'election_data.csv'
-
-with open(file,encoding="utf8") as csvfile:
+# open and read csv file
+with open('election_data.csv',encoding="utf8") as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=",")
 
-    # iterate through csvreader and append to ID country and candidate lists, and pop out headers
+    # iterate through csvreader and append to ID country and candidate lists
     header = next(csvreader) #skip headers
    
     for row in csvreader:
@@ -59,6 +58,7 @@ with open(file,encoding="utf8") as csvfile:
     print(f'Winner: {winner}')
     print('-------------------------')
 
+# write to csv
     with open('election_results.csv', 'w', newline='') as csvfile:
 
     # Initialize csv.writer
@@ -70,7 +70,7 @@ with open(file,encoding="utf8") as csvfile:
         csvwriter.writerow(['Total Votes: ',str(totalvotes)])
         csvwriter.writerow(['-------------------------'])
 
-        # iterate throughcandidates to print individual results
+        # iterate through candidates to print individual results
         for cand, perc, vote in zip(candidates_list, votes_perc, votes):
             csvwriter.writerow([str(cand) + ': ', f'{round(perc,3):.3f}%','="(' + str(vote) + ')"'])
         
