@@ -1,24 +1,21 @@
-# import packages
+# import csv package
 import csv
-file = "budget_data.csv"
-
 
 # create lists to store date and revenue
 date = []
 revenue = []
 
 #read data
-with open(file,encoding="utf8") as csvfile:
+with open("budget_data.csv",encoding="utf8") as csvfile:
     
     csvreader = csv.reader(csvfile, delimiter=",")
 
 # iterate through csvreader and append to date and revenue lists
-    header = next(csvreader) #skip headers
+    header = next(csvreader) #skip/store headers
     for row in csvreader:
         date.append(row[0])
         revenue.append(row[1])
-    # date.pop(0)
-    # revenue.pop(0)
+
     # length of date list to get total number of months
     nummonths = len(date)
 
@@ -60,12 +57,9 @@ with open(file,encoding="utf8") as csvfile:
 
 
 # write to csv
-output_file = "PyBank_solved.csv"
 
-with open(output_file, "w", newline="") as datafile:
+with open("PyBank_solved.csv", "w", newline="") as datafile:
     writer = csv.writer(datafile)
-
-    # Write the header row
 
     writer.writerow(["  Financial Analysis"])
     writer.writerow(["---------------------------- "])
